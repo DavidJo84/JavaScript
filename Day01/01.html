@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--문서를 document라고 하며 !가 앞에 있다는 것은 html5 버전을 의미한다.
+버전별로 지원하는 태그가 조금씩 다르다.-->
+<html lang="en">
+<!--문서의 언어형식-->
+
+<head>
+    <!--head tag 는 화면에 표시되지 않고 문서에 대한 정보를 기록-->
+    <meta charset="UTF-8">
+    <!--문자 코드형식 한글을 표현하는 방식: euckr vs utf-8
+    euckr- 한국컴퓨터에서 사용되며 3바이트로 한글저장
+    utf-8- 전세계에서 사용되며 2바이트로 한글저장-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        h1 {
+            color: royalblue;
+            /* 주석 */
+            background-color: burlywood;
+        }
+    </style>
+    <script>
+        function aa() { //함수정의
+            var a = 20; //선언문
+            a += 30; //구현문
+            alert("당신의 나이는?"); //메서드(함수)
+            let c = bb(10);
+            var d = "입니다."
+            a += c;
+            alert(a + d);
+        }
+    
+        function bb(c) {
+            return c + 20;
+        }
+    </script>
+    <title>Document</title>
+</head>
+
+
+<body>
+    <!--body tag 는 화면에 표시할 문서를 작성하는 곳-->
+    <!--
+        1.용어 : 태그 <tag></tag> 태그의 시작과 끝
+        2. 태그는 부모와 자식의 관계가 있으므로 부모태그 안에 태그를 작성할때는 들여쓰기.
+    -->
+    <h1>첫번째 만드는 웹문서</h1>
+    <input type="button" value="버튼" onclick="aa()">
+    <!--함수호출-->
+
+</body>
+
+</html>
