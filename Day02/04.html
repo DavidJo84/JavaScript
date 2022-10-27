@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      width: 1024px;
+    }
+
+    #header {
+      background-color: aqua;
+      text-align: center;
+    }
+
+    #nav {
+      background-color: rgba(0, 119, 255, 0.582);
+      text-align: center;
+    }
+
+    #section {
+      background-color: rgba(91, 6, 139, 0.808);
+      width: 800px;
+      height: 150px;
+      float: left;
+    }
+
+    #aside {
+      background-color: rgba(245, 9, 146, 0.808);
+      width: 210px;
+      height: 150px;
+      float: left;
+    }
+
+    #footer {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="header">
+    <p>휴먼모임</p>
+    <p>오늘도 즐거운 하루 입니다.</p>
+  </div>
+  <div id="nav">
+    <a>[홈으로]</a>
+    <a>[프론트엔드]</a>
+    <a>[백엔드]</a>
+    <a>[데이터베이스]</a>
+  </div>
+  <div id="section">
+    <p>오늘의 중요 포인트</p>
+    <ol>
+      <li>웹프로그래밍</li>
+      <li>Html Css Js</li>
+      <li>공간분할태그</li>
+      <li>블록, 인라인, 인라인-블록</li>
+    </ol>
+
+  </div>
+  <div id="aside">
+    <form action="login" method="get">
+      <table>
+        <tr>
+          <th>
+            로그인
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" name="id">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="password" name="pwd">
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            <input type="button" value="로그인">
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div id=footer>
+    <p>개발자정보: 김티처</p>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="joinUser" method="get">
+    <table border="1" style="border-collapse: collapse;">
+      <tr>
+        <th colspan="2"> 회원가입</th>
+      </tr>
+      <tr>
+        <th>아이디</th>
+        <td>
+          <input type="text" name="id">
+          <input type="submit" name="chkId" value="중복검사">
+        </td>
+      </tr>
+      <tr>
+        <th>비밀번호</th>
+        <td>
+          <input type="text" name="pwd">
+        </td>
+      </tr>
+      <tr>
+        <th>비밀번호확인</th>
+        <td>
+          <input type="password" name="chkPwd">
+        </td>
+      </tr>
+      <tr>
+        <th>이름</th>
+        <td>
+          <input type="text" name="name">
+        </td>
+      </tr>
+      <tr>
+        <th>성별</th>
+        <td>
+          <input id="man" type="radio" name="gender" value="m">
+          <label for="man">남자</label>
+          <input id="woman" type="radio" name="gender" value="w">
+          <label for="woman">여자</label>
+        </td>
+      </tr>
+      <tr>
+        <th>전화번호</th>
+        <td>
+          010
+          <input type="text" name="tel2" style="width: 60px;">
+          <input type="text" name="tel3" style="width: 60px;">
+        </td>
+      </tr>
+      <tr>
+        <th>희망등급</th>
+        <td style="font-size: 10px;" name="grade">
+          <select>
+            <option value="1">1등급</option>
+            <option value="2">2등급</option>
+            <option value="3">3등급</option>
+          </select>
+          *심사후 등급이 결정됩니다.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          *약관에 동의합니다.
+        </td>
+      </tr>
+      <tr>
+        <th>관심사항</th>
+        <td>
+          <!--같은 변수명으로 여러개의 값이 전송되면 자동으로 배열로 만들어준다-->
+          <input id="checkbox" type="checkbox" name="intr" value="스포츠">
+          <label for="checkbox">스포츠</label>
+          <input id="checkbox" type="checkbox" name="intr" value="여행">
+          <label for="checkbox">여행</label>
+          <input id="checkbox" type="checkbox" name="intr" value="독서">
+          <label for="checkbox">독서</label>
+        </td>
+      </tr>
+      <tr>
+        <th>관심지역</th>
+        <td>
+          <select multiple="multiple" name="areaIntr">
+            <option value="1">경기</option>
+            <option value="2">충남</option>
+            <option value="3">충북</option>
+            <option value="4">대전</option>
+            <option value="5">부산</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>첨부파일</th>
+        <td>
+          <input type="file" name="file" value="file">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="reset" value="Reset">
+          <input type="submit" value="Save">
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+
+</html>
