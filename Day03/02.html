@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Space Basic Page</title>
+</head>
+<style>
+    body{
+        width:1024px;
+        margin: 0px 0px 0px 0px;/* 위쪽, 오른쪽, 아래, 왼쪽 */
+        background-color: black;
+    }
+    header{
+        width:1024px;
+        background-color: aqua;
+        display: inline-block;
+        border: 2px solid;
+        margin-top: 20px;
+        padding-left: 10px;
+        
+    }
+    nav{
+        width:1024px;
+        background-color: bisque;
+        display: inline-block;
+        border: 2px solid;
+        padding: 20px 0px 0px 50px /*위 우 아래 좌 순서*/
+    }
+    nav > ul {
+        list-style:none;
+    }
+    nav > ul > li{
+        background-color: cadetblue;
+        display: inline-block;
+    }
+    nav > ul > li > a{
+        text-decoration-line: none;
+    }
+    section{
+        width:1024px;
+        background-color: blue;
+        display: inline-block;
+    }
+    article{
+        width:400px;
+        background-color: brown;
+        float: left;
+    }
+    footer{
+        width:1024px;
+        background-color: chartreuse;
+        display: inline-block;
+    }
+    h1:hover{
+        color: brown;
+    }
+    input[type=text]:focus{
+        background-color: rebeccapurple;
+    }
+    input[type=text]:disabled{
+        background-color: gray;
+    }
+    #login[data-a = '3']{
+        float:left;
+        width: 200px;
+        background-color: aqua;
+    }
+
+</style>
+<body>
+    <header>
+        <h1>HTML5 기본</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="./02.html">Home</a></li>
+            <li><a href="#">프론트엔드</a></li>
+            <li><a href="#">백엔드</a></li>
+            <li><a href="./03.html">회원가입</a></li>
+        </ul>
+    </nav>
+    <section>
+        <article>
+            <h1>Lorem ipsum dolor sit amet</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rutrum pretium elit, at iaculis dui congue facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue lectus, sagittis quis commodo commodo, congue a nibh. Donec ornare leo in ipsum consectetur euismod. Sed lorem urna, adipiscing eget pharetra ullamcorper, facilisis id sapien. Phasellus ac pellentesque odio. Curabitur quis tortor vel odio dignissim congue ac sit amet nisl. Nulla placerat nibh quis mi tincidunt pretium.</p>
+        </article>
+        <article>
+            <h1>Lorem ipsum dolor sit amet</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rutrum pretium elit, at iaculis dui congue facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue lectus, sagittis quis commodo commodo, congue a nibh. Donec ornare leo in ipsum consectetur euismod. Sed lorem urna, adipiscing eget pharetra ullamcorper, facilisis id sapien. Phasellus ac pellentesque odio. Curabitur quis tortor vel odio dignissim congue ac sit amet nisl. Nulla placerat nibh quis mi tincidunt pretium.</p>
+            <p>dd</p>
+        </article>
+        <div id="login" data-a="4">
+            <form>
+                <input type="text" >
+                <input type="text" >
+                <input type="text" disabled>
+            </form>
+
+        </div>
+    </section>
+    <footer>
+        <address>서울특별시 강서구 내발산동</address>
+    </footer>
+</body>
+</html>
