@@ -1,0 +1,206 @@
+#main {
+  margin: 0 auto;
+  width: 1024px;
+  height: 800px;
+  background-color: rgb(231, 231, 231);
+}
+
+header {
+  width: 1024px;
+  height: 100px;
+  float: left;
+}
+
+nav {
+  width: 1024px;
+  height: 50px;
+  background-color: rgb(57, 59, 59);
+  float: left;
+}
+
+nav ul li {
+  display: inline;
+
+  margin-left: 80px;
+}
+
+nav ul li a:hover {
+  color: rgb(86, 146, 27);
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgb(236, 236, 236);
+}
+
+.logo1 {
+  float: left;
+  padding-left: 20px;
+  padding-top: 5px;
+}
+
+.logo1 a{
+  text-decoration: none;
+  color: rgb(86, 146, 27);
+}
+
+.member {
+  padding-top: 37px;
+  padding-right: 30px;
+  float: right;
+  font-size: small;
+}
+
+header div ul li {
+  padding-right: 10px;
+  display: inline;
+}
+
+.green {
+  color: rgb(86, 146, 27);
+}
+
+header div ul li a {
+  color: rgb(57, 59, 59);
+  text-decoration: none;
+}
+
+#search{
+  float: left;
+  margin-left: 100px;
+  margin-top: 40px;
+  font-size: small;
+}
+
+#sideBar {
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 18%;
+  height: 450px;
+  float: left;
+  box-sizing: border-box;
+}
+
+#sideBar th {
+  background-color: rgb(86, 146, 27);
+  color: rgb(236, 236, 236);
+}
+
+#sideBar table a {
+  text-decoration: none;
+  color: rgb(57, 59, 59);
+}
+
+table {
+  width: 100%;
+  float: left;
+}
+
+table th {
+  height: 40px;
+  font-size: small;
+}
+
+table td {
+  text-decoration: none;
+  height: 30px;
+  padding-left: 30px;
+  font-size: small;
+  color: rgb(141, 141, 141);
+  border-bottom: 1px rgb(167, 168, 168) solid;
+}
+
+#sideBar td:hover {
+  background-color: rgb(189, 188, 188);
+}
+
+#s1 {
+  width: 535px;
+  height: 400px;
+  float: left;
+  margin-top: 22px;
+}
+
+#notice {
+  width: 26%;
+  height: 170px;
+  margin-top: 22px;
+  float: left;
+  border: 1px rgb(167, 168, 168) solid;
+  background-color: white;
+  padding-top: 5px;
+  font-size: small;
+  box-sizing: border-box;
+}
+
+#notice>div {
+  font-size: small;
+  height: 30px;
+  border-bottom: 1px rgb(167, 168, 168) solid;
+}
+
+#notice b {
+  margin-left: 15px;
+  color: rgb(86, 146, 27);
+}
+
+
+
+#notice ul li::marker {
+  color: rgb(37, 201, 146);
+}
+
+#notice ul li a {
+  text-decoration: none;
+  color: rgb(57, 59, 59);
+}
+
+#event {
+  width: 26%;
+  height: 215px;
+  margin-top: 15px;
+  float: left;
+  border: 1px rgb(167, 168, 168) solid;
+  background-color: white;
+  padding-top: 5px;
+  font-size: small;
+  box-sizing: border-box;
+}
+
+#event>div {
+  font-size: small;
+  height: 30px;
+  border-bottom: 1px rgb(167, 168, 168) solid;
+}
+
+#event p {
+  padding-left: 10px;
+  margin-top: 4px;
+  margin-bottom: 7px;
+}
+
+#event img {
+  margin-left: 30px;
+  ;
+}
+
+#event>div>b {
+  margin-left: 15px;
+  color: rgb(86, 146, 27);
+}
+
+footer{
+  width: 1024px;
+  height: 90px;
+  float: left;
+  background-color: rgb(57, 59, 59);
+ color: rgb(219, 223, 223);
+  font-size: x-small;
+  padding-left: 20px;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
+footer p{
+  margin: 0px;
+}

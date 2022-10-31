@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAYUN ART</title>
+  <link rel="stylesheet" href="./css/all.css">
+  <style>
+    section {
+      width: 1024px;
+      height: 460px;
+      float: left;
+    }
+
+    table {
+      margin-top: 40px;
+      margin-left: 340px;
+      width: 320px;
+    }
+
+    table td {
+      padding-left: 9px;
+    }
+
+    table th{
+      font-size: xx-large;
+      color: rgb(86, 146, 27);
+      padding-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div class="logo1">
+        <a href="index.html">
+          <h1>DAYUN <span style="color: rgb(57, 59, 59);">ART</span></h1>
+        </a>
+      </div>
+
+      <div class="member">
+        <ul>
+          <li><a class="green" href="#">로그인</a></li>
+          <li><a class="green" href="join_from.html">회원가입</a></li>
+          <li><a href="#">마이페이지</a></li>
+          <li><a href="#">이용안내</a></li>
+          <li><a href="#">고객센터</a></li>
+        </ul>
+      </div>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#">상세 페이지</a></li>
+        <li><a href="#">장바구니</a></li>
+        <li><a href="#">고객 갤러리</a></li>
+        <li><a href="#">주문배송</a></li>
+        <li><a href="#">자주 하는 질문</a></li>
+      </ul>
+    </nav>
+    <section>
+      <form action="memberJoin" method="post">
+        <table>
+          <tr>
+            <th colspan="2">회원가입</th>
+          </tr>
+          <tr>
+            <td>아이디</td>
+            <td>
+              <input type="text" name="id" size="10">
+              <input type="button" value="중복체크">
+            </td>
+
+          </tr>
+          <tr>
+            <td>비밀번호</td>
+            <td><input type="password" name="pwd" size="10"></td>
+          </tr>
+          <tr>
+            <td>비밀번호 확인</td>
+            <td><input type="password" name="chkPwd" size="10"></td>
+          </tr>
+          <tr>
+            <td>성 명</td>
+            <td><input type="text" name="name" size="10"></td>
+          </tr>
+          <tr>
+            <td>성 별</td>
+            <td>
+              <input type="radio" name="gender">남
+              <input type="radio" name="gender">여
+            </td>
+          </tr>
+          <tr>
+            <td>전화번호</td>
+            <td>
+              010 -
+              <input type="text" name="tel1" size="4"> -
+              <input type="text" name="tel2" size="4">
+            </td>
+          </tr>
+          <tr>
+            <td>주 소</td>
+            <td>
+              <input type="text" name="addr" size="20">
+            </td>
+          </tr>
+        </table>
+      </form>
+
+    </section>
+    <footer>
+      <p>판매자 : 조하영</p>
+      <p>상호 : 다연아트</p>
+      <p>주소 : 경기도 수원시 팔달구 302-1 1층</p>
+      <p>전화번호 : 031-344-1231</p>
+      <p>사업자등록번호 : 120-31-122314</p>
+    </footer>
+  </div>
+</body>
+
+</html>
