@@ -90,6 +90,73 @@
       sum += i;
     }
     console.log(sum);
+
+    //     추가 문제~~~
+    // 8. 1부터 10까지 각 팩토리얼의 합을 구하시오.
+    //     1 + 1*2 + 1*2*3 + .. + 1*2*3*4*5*6*7*8*9*10 = ?
+    var facto = 1;
+    var sum = 0;
+    for (let i = 1; i <= 10; i++) {
+      for (let j = 1; j <= i; j++) {
+        facto *= j;
+      }
+      sum += facto;
+      facto = 1;
+    }
+    console.log(sum);
+
+    // 9. var a = new Array(24);
+    //   배열의 인덱스를 시간으로 정의한다.
+    //   프로그램이 실행되면 0-23시 중 시간을 입력하시오라는 문구가 나온다. - while(true)로 무한반복
+    //   키보드로 0-23시 숫자 중 하나를 입력한다. 
+    //   var a =  prompt('수를 입력하세요.'); <키보드로 입력 받을 수 있다>
+    //   이때 키보드로 99를 입력하면 무한반복문을 종료한다.
+    //   위에서 시간을 입력하면 이번에는 스케줄을 입력한다. 
+    //   스케줄 입력이 끝나면 다시 0-23시 중 시간을 입력하시오라는
+    //   문구가 나오면서 반복한다.
+
+    //   스케줄이 모두 입력 되었으면(99로 종료 한다) 
+    //   입력된 스케줄이 출력되도록 한다.  출력형태는 0시 : 일정내용
+
+    //   만약 현재 시간에 해당되는 일정이라면 일정내용 뒤에 *를 붙힌다. 
+    //   현재 시간은 new Data(); 객체를 이용한다. // 교재 ppt 에 나옴
+    // var a = new Array(24);
+    // var date = new Date();
+    // var hour = date.getHours();
+    // console.log(hour);
+    // while (true) {
+    //   var b = prompt('시간을 입력하세요.');
+    //   if (b == 99) {
+    //     for (let i = 0; i < a.length; i++) {
+    //       if (a[i] != null) {
+    //         if (i == hour) {
+    //           console.log(i + '시 : ' + a[i] + '*');
+    //         }else{
+    //           console.log(i + '시 : ' + a[i]);
+    //         }
+    //       }
+    //     }
+    //     break;
+    //   }
+    //   var c = prompt('일정을 입력하세요.');
+    //   a[b] = c;
+    // }
+
+// 10. 다음 소스를 분석하시오.
+  // const n = prompt('수를 입력하세요.').split(' ');
+  // console.log(Math.pow(parseInt(n[0], 10), parseInt(n[1], 10)));
+//   수를 입력할때는 숫자공백숫자를 입력한다. 예를들어 20 30
+// 두수를 공백으로 입력 받아 첫번째 받은 입력값을 10진수의 정수형으로 변환하고 두번째 입력값도 10진수의 정수형으로 변환한 후
+// 첫번째 수를 두번째 수만큼 거듭제곱 해준다.
+
+// 11. const scores = prompt('세 과목의 점수를 입력하세요.').split(' ');
+//     위 코드로 세 과목의 점수를 입력받고 총합과 평균을 구하시오.
+//     평균은 소숫점 둘째자리까지 표현한다. (반올림)
+    const scores = prompt('세 과목의 점수를 입력하세요.').split(' ');
+    var sum = parseInt(scores[0],10) + parseInt(scores[1],10) +parseInt(scores[2],10);
+    var avg = sum/scores.length;
+    var round = Math.round(avg*100)/100;
+    console.log(round);
   </script>
 </body>
 
