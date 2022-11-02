@@ -57,7 +57,6 @@ footer {
   background-color: rgba(255, 255, 255,0.7);
   margin-bottom: 15px;
   text-align: center;
-  padding-top: 9px;
   box-sizing: border-box;
 }
 
@@ -106,11 +105,11 @@ footer {
 #search {
   margin-top: 40px;
   float: left;
-  margin-left: 400px;
+  margin-left: 300px;
 }
 
 #logo {
-  width: 300px;
+  width: 400px;
   float: left;
 }
 
@@ -186,4 +185,74 @@ input:focus{
 
 input{
   border: 1px rgb(158, 158, 158) solid;
+}
+
+/* 롤링배너관련 */
+.container{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.rollingbanner{
+  position: relative;
+  width: 380px;
+  height: 32px;
+  font-size: .875rem;
+  letter-spacing: -1px;
+  padding: 7px 15px;
+  box-sizing: border-box;
+  /* background-color: #f0f0f0; */
+  border-radius: 16px;
+}
+/* 타이틀 */
+.rollingbanner > .title{
+  font-weight: bold;
+  float: left;
+  padding-right: 10px;
+}
+/* 롤링 배너 */
+.rollingbanner > .wrap{
+  position: relative;
+  width: auto;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}        
+.rollingbanner ul{
+  list-style: none;
+}
+.rollingbanner li{
+  position: absolute;
+  top: -36px;
+  left: 0;
+}
+/* 이전, 현재, 다음 롤링 배너 표시 */
+.rollingbanner li.prev{
+  top: 36px;
+  transition: top 0.5s ease;
+}
+.rollingbanner li.current{
+  top: 0;
+  transition: top 0.5s ease;
+}
+.rollingbanner li.next{
+  top: -36px;
+}
+.rollingbanner a{
+  display: block;
+  display: -webkit-box;
+  text-decoration: none;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient:vertical;
+  overflow: hidden;
+  color: #000;
+}
+/* 반대 방향으로 진행 */
+.rollingbanner li.prev{
+  top: -36px;
+  transition: top 0.5s ease;
+}
+.rollingbanner li.next{
+  top: 36px;
 }

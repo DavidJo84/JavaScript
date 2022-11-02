@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolling Text Banner</title>
+    <style>
+        html, body{
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 배너 컨테이너 */
+        .rollingbanner{
+            position: relative;
+            width: 380px;
+            height: 32px;
+            font-size: .875rem;
+            letter-spacing: -1px;
+            padding: 7px 15px;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+            border-radius: 16px;
+        }
+        /* 타이틀 */
+        .rollingbanner > .title{
+            font-weight: bold;
+            float: left;
+            padding-right: 10px;
+        }
+        /* 롤링 배너 */
+        .rollingbanner > .wrap{
+            position: relative;
+            width: auto;
+            height: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }        
+        .rollingbanner ul{
+            list-style: none;
+        }
+        .rollingbanner li{
+            position: absolute;
+            top: -36px;
+            left: 0;
+        }
+        /* 이전, 현재, 다음 롤링 배너 표시 */
+        .rollingbanner li.prev{
+            top: 36px;
+            transition: top 0.5s ease;
+        }
+        .rollingbanner li.current{
+            top: 0;
+            transition: top 0.5s ease;
+        }
+        .rollingbanner li.next{
+            top: -36px;
+        }
+        .rollingbanner a{
+            display: block;
+            display: -webkit-box;
+            text-decoration: none;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient:vertical;
+            overflow: hidden;
+            color: #000;
+        }
+        /* 반대 방향으로 진행 */
+        .rollingbanner li.prev{
+            top: -36px;
+            transition: top 0.5s ease;
+        }
+        .rollingbanner li.next{
+            top: 36px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+            var interval = window.setInterval(rollingCallback, 3000);
+        })
+        function rollingCallback(){
+            //.prev 클래스 삭제
+            document.querySelector('.rollingbanner .prev').classList.remove('prev');
+
+            //.current -> .prev
+            let current = document.querySelector('.rollingbanner .current');
+            current.classList.remove('current');
+            current.classList.add('prev');
+
+            //.next -> .current
+            let next = document.querySelector('.rollingbanner .next');
+            //다음 목록 요소가 널인지 체크
+            if(next.nextElementSibling == null){
+                document.querySelector('.rollingbanner ul li:first-child').classList.add('next');
+            }else{
+                //목록 처음 요소를 다음 요소로 선택
+                next.nextElementSibling.classList.add('next');
+            }
+            next.classList.remove('next');
+            next.classList.add('current');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="rollingbanner">
+            <div class="title">공지사항 > </div>
+            <div class="wrap">
+                <ul>
+                    <li><a href="#">11/02 14시 4층에서 전체 회의 있습니다.</a></li>
+                    <li class="next"><a href="#">12/14 18시 송년회있습니다.</a></li>
+                    <li class="current"><a href="#">11/05 19시 병동 회식있습니다.</a></li>
+                    <li><a href="#">12월 부터 5층 병동 폐쇄합니다.</a></li>
+                    <li class="prev"><a href="#">12/16 이정재 과장 결혼식있습니다.</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--html 문서는 인터프리터 언어로 첫번째 줄부터 해석해서 적용시킨다
+  -->
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 id="hhhh">h1 js</h1>
+</body>
+<script>
+  // var a = document.getElementById('hhhh');
+  // a.innerHTML = 'kkkk';
+  //1. 선언문- 전역변수(function-scoped)와 지역변수(block-scoped)
+  //2. function-scoped : var  block-scoped : let , const
+
+  //var
+  var a = 20;
+  if (true) {
+    var a = 30;
+    document.write(a); //30
+    document.write("<br>");
+  }
+  document.write(a); //30
+  document.write("<br>");
+  //let
+  let b = 20;
+  if (true) {
+    let b = 30;
+    document.write(b); //30
+    document.write("<br>");
+  }
+  document.write(b); //20
+  document.write("<br>");
+
+  //const- 선언후 수정 불가(java에 final같은 개념)
+  const c = 'abc';
+  document.write(c);
+  document.write("<br>");
+  // c = 'cccc'; //에러 발생하여 밑에는 적용이 안된다.
+  // document.write(c);
+  // document.write("<br>");
+
+  //== 와 ===의 차이
+  var k1 = 10;
+  var k2 = '10';
+
+  //== 는 자료형 상관없이 값이 같으면 참
+  if (k1 == k2) {
+    document.write('같다.');//출력됨
+  }
+  
+  //=== 는 자료형과 값이 같아야 참
+  if (k1 === k2) {
+    document.write('같다.');//출력안됨.
+  }
+
+  //배열선언
+  var a1 = new Array(10);
+  console.log(a1.length);
+
+  //배열에 자료형을 다르게 해도 된다.
+  var a2 = [34,'abc',45,'kkk'];
+  for(let i = 0; i< a2.length;i++){
+    document.write(a2[i]+"/ "+ typeof(a2[i]));
+    document.write("<br>");
+  }
+</script>
+
+</html>
