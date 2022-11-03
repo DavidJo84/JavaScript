@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #myPaint {
+    border: 1px solid;
+  }
+</style>
+
+<body>
+  <div>
+    <canvas id="myPaint" width="300" height="400"></canvas>
+  </div>
+  <div>
+    검정<input type="radio" name="color" onclick="color(this.value)" value="black" checked>
+    빨강<input type="radio" name="color" onclick="color(this.value)" value="red">
+    초록<input type="radio" name="color" onclick="color(this.value)" value="green">
+    선택<input type="color" onchange="color(this.value)" value="#000000">
+    <br>
+    펜굵기<input type="range" name="bold" min="1" max="30" onchange="range(this.value)" value="1">
+    <br>
+    펜모양 기본펜<input type="radio" name="lineshape" onclick="lineShape(this.value)" value="default" checked>
+    둥근펜<input type="radio" name="lineshape" onclick="lineShape(this.value)" value="round">
+    <input type="button" onclick="reset()" value="다각형 그리기 끝">
+    <!-- 이벤트를 처리할때 
+        1. html에서 이벤트를 발생시키고 자바스크립트를 호출
+        2. 자바스크립트(제이쿼리)에서 이벤트를 감지하는 법-->
+  </div>
+
+</body>
+<script>
+  const drawPan = document.getElementById('myPaint');
+  var myctx = drawPan.getContext("2d");
+  var flag = false;
+  //자바스크립트에는 익명의 함수가 있다. 간단하게 구현하고자 할때, 호출이 필요없을때 사용
+  //() => {코드작성}
+  //이벤트 리스너의 매개변수로 마우스 다운동작을 지정하고 동작을 정의한다.
+
+  drawPan.addEventListener('mousedown', () => {
+    startDraw();
+  });
+
+  // drawPan.addEventListener('mouseup', () => {
+  //   endDraw();
+  // });
+
+  color = c => {
+    myctx.strokeStyle = c;
+    myctx.beginPath();
+  }
+
+  range = size => {
+    myctx.lineWidth = size;
+    myctx.beginPath();
+  }
+
+  lineShape = shape => {
+    if (shape == 'round') {
+      myctx.lineJoin = "round";
+      myctx.lineCap = "round";
+    } else {
+      myctx.lineJoin = "miter";
+      myctx.lineCap = "butt";
+    }
+    myctx.beginPath();
+  }
+
+  let startX;
+  let startY;
+  
+  var chk = true;
+  function startDraw() {
+    let e = window.event;
+    if (chk) {
+      startX = (e.clientX - 8);
+      startY = (e.clientY - 8);
+      myctx.moveTo(startX, startY);
+      chk = false;
+    } else {
+      startX = (e.clientX - 8);
+      startY = (e.clientY - 8);
+      myctx.lineTo(startX, startY);
+      myctx.stroke();
+      myctx.beginPath();
+    }
+
+  }
+
+  // function endDraw() {
+  //   let e = window.event;
+  //   endX = startX;
+  //   endY = startY;
+  //   myctx.lineTo(startX, startY);
+  //   myctx.stroke();
+  //   myctx.beginPath();
+  // }
+
+  reset = () => {
+    chk = true;
+  }
+
+</script>
+
+</html>
