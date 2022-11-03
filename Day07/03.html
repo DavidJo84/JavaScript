@@ -41,25 +41,18 @@
   //() => {코드작성}
   //이벤트 리스너의 매개변수로 마우스 다운동작을 지정하고 동작을 정의한다.
 
-  drawPan.addEventListener('mousedown', () => {
-    startDraw();
-  });
-
-  drawPan.addEventListener('mouseup', () => {
-    endDraw();
-  });
-
+  
   
   color = c => {
     myctx.strokeStyle = c;
     myctx.beginPath();
   }
-
+  
   range = size => {
     myctx.lineWidth = size;
     myctx.beginPath();
   }
-
+  
   lineShape = shape => {
     if (shape == 'round') {
       myctx.lineJoin = "round";
@@ -70,10 +63,19 @@
     }
     myctx.beginPath();
   }
+  drawPan.addEventListener('mousedown', () => {
+    startDraw();
+  });
+
+  drawPan.addEventListener('mouseup', () => {
+    endDraw();
+  });
+
   let startX;
   let startY;
   let endX;
   let endY;
+  
   function startDraw() {
     flag = true;
     let e = window.event;

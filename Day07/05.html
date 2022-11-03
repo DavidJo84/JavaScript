@@ -27,7 +27,6 @@
     <br>
     펜모양 기본펜<input type="radio" name="lineshape" onclick="lineShape(this.value)" value="default" checked>
     둥근펜<input type="radio" name="lineshape" onclick="lineShape(this.value)" value="round">
-    <input type="button" onclick="reset()" value="다각형 그리기 끝">
     <!-- 이벤트를 처리할때 
         1. html에서 이벤트를 발생시키고 자바스크립트를 호출
         2. 자바스크립트(제이쿼리)에서 이벤트를 감지하는 법-->
@@ -42,37 +41,42 @@
   //() => {코드작성}
   //이벤트 리스너의 매개변수로 마우스 다운동작을 지정하고 동작을 정의한다.
 
-  drawPan.addEventListener('mousedown', () => {
-    startDraw();
-  });
-
+  
   // drawPan.addEventListener('mouseup', () => {
-  //   endDraw();
-  // });
-
-  color = c => {
-    myctx.strokeStyle = c;
-    myctx.beginPath();
-  }
-
-  range = size => {
-    myctx.lineWidth = size;
-    myctx.beginPath();
-  }
-
-  lineShape = shape => {
-    if (shape == 'round') {
-      myctx.lineJoin = "round";
-      myctx.lineCap = "round";
-    } else {
-      myctx.lineJoin = "miter";
-      myctx.lineCap = "butt";
+    //   endDraw();
+    // });
+    
+    color = c => {
+      myctx.strokeStyle = c;
+      myctx.beginPath();
     }
-    myctx.beginPath();
-  }
-
+    
+    range = size => {
+      myctx.lineWidth = size;
+      myctx.beginPath();
+    }
+    
+    lineShape = shape => {
+      if (shape == 'round') {
+        myctx.lineJoin = "round";
+        myctx.lineCap = "round";
+      } else {
+        myctx.lineJoin = "miter";
+        myctx.lineCap = "butt";
+      }
+      myctx.beginPath();
+    }
+    
+    drawPan.addEventListener('mousedown', () => {
+      startDraw();
+    });
+    
   let startX;
   let startY;
+  let endX;
+  let endY;
+  let fstartX;
+  let fstartY;
   
   var chk = true;
   function startDraw() {
@@ -80,31 +84,25 @@
     if (chk) {
       startX = (e.clientX - 8);
       startY = (e.clientY - 8);
+      fstartX = (e.clientX - 8);
+      fstartY = (e.clientY - 8);
       myctx.moveTo(startX, startY);
       chk = false;
     } else {
-      startX = (e.clientX - 8);
-      startY = (e.clientY - 8);
-      myctx.lineTo(startX, startY);
+      endX = (e.clientX - 8);
+      endY = (e.clientY - 8);
+      myctx.moveTo(startX, startY);
+      myctx.lineTo(endX, endY);
       myctx.stroke();
       myctx.beginPath();
+      startX = endX;
+      startY = endY;
+      if((fstartX-5)<=endX&&endX<=(fstartX+5) && (fstartY-5)<=endY&&endY<=(fstartY+5)){
+        chk = true;
+        console.log((fstartX-5)+"/"+(fstartY-5)+"/"+endX+"/"+endY)
+      }
     }
-
   }
-
-  // function endDraw() {
-  //   let e = window.event;
-  //   endX = startX;
-  //   endY = startY;
-  //   myctx.lineTo(startX, startY);
-  //   myctx.stroke();
-  //   myctx.beginPath();
-  // }
-
-  reset = () => {
-    chk = true;
-  }
-
 </script>
 
 </html>
