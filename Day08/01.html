@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #myPaint {
+    border: 1px solid;
+
+  }
+
+</style>
+
+<body>
+  
+    <div id="canvas">
+      <canvas id="myPaint" width="400" height="400"></canvas>
+    </div>
+    <div id="menu">
+      검정<input type="radio" name="color" onclick="color(this.value)" value="black" checked>
+      빨강<input type="radio" name="color" onclick="color(this.value)" value="red">
+      초록<input type="radio" name="color" onclick="color(this.value)" value="green">
+      선택<input type="color" onchange="color(this.value)" value="#000000">
+      <br>
+      펜굵기<input type="range" name="bold" min="1" max="30" onchange="range(this.value)" value="1">
+      <br>
+      펜모양 기본펜<input type="radio" name="lineshape" onclick="lineShape(this.value)" value="default" checked>
+      둥근펜<input type="radio" name="lineshape" onclick="lineShape(this.value)" value="round">
+      <br>
+      선그리기<input type="radio" name="choice" onclick="choice(this.value)" value="line" checked>
+      사각형그리기<input type="radio" name="choice" onclick="choice(this.value)" value="square">
+      원그리기<input type="radio" name="choice" onclick="choice(this.value)" value="circle">
+      다각형그리기<input type="radio" name="choice" onclick="choice(this.value)" value="lect">
+
+      <!-- 이벤트를 처리할때 
+        1. html에서 이벤트를 발생시키고 자바스크립트를 호출
+        2. 자바스크립트(제이쿼리)에서 이벤트를 감지하는 법-->
+    </div>
+  
+
+</body>
+<script>
+  // const drawPan = document.getElementById('myPaint'),
+  // drawPanClone = drawPan.cloneNode(true);
+
+  // drawPan.parentNode.replaceChild(drawPanClone, drawPan);
+  const drawPan = document.getElementById('myPaint');
+  var myctx = drawPan.getContext("2d");
+  var flag = false;
+  //자바스크립트에는 익명의 함수가 있다. 간단하게 구현하고자 할때, 호출이 필요없을때 사용
+  //() => {코드작성}
+  //이벤트 리스너의 매개변수로 마우스 다운동작을 지정하고 동작을 정의한다.
+
+
+  color = c => {
+    myctx.strokeStyle = c;
+    myctx.beginPath();
+  }
+
+  range = size => {
+    myctx.lineWidth = size;
+    myctx.beginPath();
+  }
+
+  lineShape = shape => {
+    if (shape == 'round') {
+      myctx.lineJoin = "round";
+      myctx.lineCap = "round";
+    } else {
+      myctx.lineJoin = "miter";
+      myctx.lineCap = "butt";
+    }
+    myctx.beginPath();
+  }
+  var a = 'line';
+  function choice(value) {
+    a = value;
+    console.log(a);
+
+  }
+  let startX;
+  let startY;
+  let endX;
+  let endY;
+  let fstartX;
+  let fstartY;
+  var chk = true;
+
+  drawPan.addEventListener('mousedown',
+    () => {
+      startDraw()
+    });
+
+  drawPan.addEventListener('mouseup',
+    () => {
+      endDraw()
+    });
+  drawPan.addEventListener('mousemove',
+    () => {
+
+      if (a == 'line') {
+        console.log(a);
+        moveDraw()
+      }
+    });
+
+  function startDraw() {
+    console.log('다각형');
+    flag = true;
+    let e = window.event;
+    if (a == 'line') {
+      startX = (e.clientX - 8);
+      startY = (e.clientY - 8);
+      myctx.moveTo((startX), (startY));
+      myctx.beginPath();
+    } else if (a == 'square') {
+      startX = (e.clientX - 8);
+      startY = (e.clientY - 8);
+    } else if (a == 'circle') {
+      startX = (e.clientX - 8);
+      startY = (e.clientY - 8);
+    } else if (a == 'lect') {
+      if (chk) {
+        startX = (e.clientX - 8);
+        startY = (e.clientY - 8);
+        fstartX = (e.clientX - 8);
+        fstartY = (e.clientY - 8);
+        myctx.moveTo(startX, startY);
+        chk = false;
+      } else {
+        endX = (e.clientX - 8);
+        endY = (e.clientY - 8);
+        myctx.moveTo(startX, startY);
+        myctx.lineTo(endX, endY);
+        myctx.stroke();
+        myctx.beginPath();
+        startX = endX;
+        startY = endY;
+        if ((fstartX - 5) <= endX && endX <= (fstartX + 5) && (fstartY - 5) <= endY && endY <= (fstartY + 5)) {
+          chk = true;
+          console.log((fstartX - 5) + "/" + (fstartY - 5) + "/" + endX + "/" + endY)
+        }
+      }
+    }
+  }
+
+  function endDraw() {
+    let e = window.event;
+    if (a == 'line') {
+      flag = false;
+    } else if (a == 'square') {
+      endX = (e.clientX - 8);
+      endY = (e.clientY - 8);
+
+      myctx.beginPath();
+      myctx.strokeRect(startX, startY, (endX - startX), (endY - startY));
+      flag = false;
+    } else if (a == 'circle') {
+      endX = (e.clientX - 8);
+      endY = (e.clientY - 8);
+      myctx.beginPath();
+      if (Math.abs(endX - startX) > Math.abs(endY - startY)) {
+        var x = Math.abs(endX - startX);
+      } else {
+        x = Math.abs(endY - startY);
+      }
+
+      myctx.arc(startX, startY, x, 0, 2 * Math.PI);
+      myctx.stroke();
+      myctx.closePath();
+      flag = false;
+    } else if (a == 'lect') {
+      flag = false;
+    }
+  }
+
+  function moveDraw() {
+    if (flag) {
+      let e = window.event;
+      myctx.lineTo((e.clientX - 8), (e.clientY - 8));
+      myctx.stroke();
+    }
+  }
+</script>
+
+</html>

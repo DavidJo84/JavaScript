@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamedev Canvas Workshop</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    canvas {
+      background: #eee;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+    레벨 선택 > <input type="radio" name="level" onclick="level(this.value)" value="3" checked> level 1
+    <input type="radio" name="level" onclick="level(this.value)" value="6"> level 2
+    <input type="radio" name="level" onclick="level(this.value)" value="9"> level 3 <br>
+    속도 선택 > <input type="radio" name="speed" onclick="speed(this.value)" value="4" checked> x 1
+    <input type="radio" name="speed" onclick="speed(this.value)" value="6"> x 1.5
+    <input type="radio" name="speed" onclick="speed(this.value)" value="8"> x 2 <br>
+    난이도 선택 > <input type="radio" name="paddle" onclick="paddle(this.value)" value="100" checked> 하
+    <input type="radio" name="paddle" onclick="paddle(this.value)" value="80"> 중
+    <input type="radio" name="paddle" onclick="paddle(this.value)" value="60"> 상 <br>
+    <input id="start" type="button" onclick="start()" value="게임시작">
+    <input id="stop" type="button" onclick="stop()" value="일시정지">
+  </div>
+
+
+</body>
+<script>
+
+  var bstatus = 3;
+  var bspeed = 4;
+  var paddleWidth = 100;
+  let lives = 3;
+  let totalBricks = 0;
+  var flag = true;
+
+  level = (value) => {
+    console.log(value);
+    bstatus = parseInt(value, 10);
+    console.log(bstatus);
+  };
+
+  speed = (value) => {
+    console.log(value);
+    bspeed = parseInt(value, 10);
+    console.log(bspeed);
+  }
+
+  paddle = (value) => {
+    paddleWidth = parseInt(value, 10);
+  }
+
+  stop = () => {
+    if (flag) {
+      flag = false;
+    } else {
+      flag = true;
+    }
+
+  }
+  console.log(flag);
+  start = () => {
+    // JavaScript 코드가 여기에 들어갈 것입니다.
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var x = canvas.width / 2;
+    var y = canvas.height - 30;
+    var dx = bspeed;
+    var dy = -bspeed;
+    var ballRadius = 10;
+    const paddleHeight = 10;
+    var colorRandom = "rgb(0,0,0)";
+    let paddleX = (canvas.width - paddleWidth) / 2;
+    let rightPressed = false;
+    let leftPressed = false;
+    const brickRowCount = 3;
+    const brickColumnCount = 5;
+    const brickWidth = 75;
+    const brickHeight = 20;
+    const brickPadding = 10;
+    const brickOffsetTop = 30;
+    const brickOffsetLeft = 30;
+
+    let score = 0;
+
+
+    var bricks = [];
+    for (var c = 0; c < brickColumnCount; c++) {
+      bricks[c] = [];
+
+      for (var r = 0; r < brickRowCount; r++) {
+        bricks[c][r] = { x: 0, y: 0, status: Math.floor((Math.random() * bstatus) + 1) };
+        totalBricks += parseInt(bricks[c][r].status, 10);
+      }
+    }
+
+    document.addEventListener("keydown", keyDownHandler, false);
+    document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener("mousemove", mouseMoveHandler, false);
+
+    function mouseMoveHandler(e) {
+      const relativeX = e.clientX - canvas.offsetLeft;
+      if (relativeX > 0 + (paddleWidth / 2) && relativeX < canvas.width - (paddleWidth / 2)) {
+        paddleX = relativeX - paddleWidth / 2;
+      }
+    }
+
+    function keyDownHandler(e) {
+      if (e.key === "Right" || e.key === "ArrowRight") {
+        rightPressed = true;
+      } else if (e.key === "Left" || e.key === "ArrowLeft") {
+        leftPressed = true;
+      }
+    }
+
+    function keyUpHandler(e) {
+      if (e.key === "Right" || e.key === "ArrowRight") {
+        rightPressed = false;
+      } else if (e.key === "Left" || e.key === "ArrowLeft") {
+        leftPressed = false;
+      }
+    }
+
+    function makeColor() {
+      let r = Math.floor((Math.random() * 256));
+      let g = Math.floor((Math.random() * 256));
+      let b = Math.floor((Math.random() * 256));
+      colorRandom = `rgb(${r},${g},${b})`
+      //colorRandom ="rgb("+r+","+g+","+b+")";
+      return colorRandom;
+    }
+
+    function collisionDetection() {
+      for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+          const b = bricks[c][r];
+          if (b.status !== 0) {
+            if (
+              x > b.x &&
+              x < b.x + brickWidth &&
+              y > b.y &&
+              y < b.y + brickHeight
+            ) {
+              dy = -dy;
+              makeColor();
+              b.status -= 1;
+              score++;
+              if (score === totalBricks) {
+                alert("YOU WIN, CONGRATULATIONS!");
+                document.location.reload();
+                clearInterval(interval); // Needed for Chrome to end game
+              }
+            }
+          }
+        }
+      }
+    }
+
+    function drawScore() {
+      ctx.font = "16px Arial";
+      ctx.fillStyle = "#0095DD";
+      ctx.fillText(`Score: ${score}`, 8, 20);
+    }
+
+    function drawLives() {
+      ctx.font = "16px Arial";
+      ctx.fillStyle = "pink";
+      ctx.fillText("♥ X" + lives, canvas.width - 80, 20);
+    }
+
+    function drawBricks() {
+      for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+          if (bricks[c][r].status !== 0) {
+            const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+            const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
+            ctx.beginPath();
+            ctx.rect(brickX, brickY, brickWidth, brickHeight);
+            if (bricks[c][r].status === 3) {
+              ctx.fillStyle = "rgb(110,157,180)";
+            } else if (bricks[c][r].status === 2) {
+              ctx.fillStyle = "rgb(78,194,202)";
+            } else if (bricks[c][r].status === 1) {
+              ctx.fillStyle = "rgb(163,249,255)";
+            } else if (bricks[c][r].status === 4) {
+              ctx.fillStyle = "rgb(89,113,128)";
+            } else if (bricks[c][r].status === 5) {
+              ctx.fillStyle = "rgb(64,81,89)";
+            } else if (bricks[c][r].status === 6) {
+              ctx.fillStyle = "#0095DD";
+            } else if (bricks[c][r].status === 7) {
+              ctx.fillStyle = "rgb(21,12,187)";
+            } else if (bricks[c][r].status === 8) {
+              ctx.fillStyle = "rgb(100,54,17)";
+            } else if (bricks[c][r].status === 9) {
+              ctx.fillStyle = "rgb(0,0,0)";
+            }
+            ctx.fill();
+            ctx.closePath();
+          }
+        }
+      }
+    }
+
+    function drawBall(colorRandom) {
+      ctx.beginPath();
+      ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+      ctx.fillStyle = colorRandom;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function drawPaddle() {
+      ctx.beginPath();
+      ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
+      ctx.fillStyle = "#0095DD";
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function draw() {
+      if (flag) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBricks();
+        drawBall(colorRandom);
+        drawPaddle();
+        drawScore();
+        drawLives()
+        collisionDetection();
+
+        if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+          dx = -dx;
+          makeColor();
+        }
+
+        if (y + dy < ballRadius) {
+          dy = -dy;
+          makeColor();
+        } else if (y + dy > canvas.height - ballRadius) {
+          if (x > paddleX && x < paddleX + paddleWidth) {
+            dy = -dy;
+          }
+          else {
+            lives--;
+            if (!lives) {
+              alert("GAME OVER");
+              document.location.reload();
+            }
+            else {
+              x = canvas.width / 2;
+              y = canvas.height - 30;
+              dx = bspeed;
+              dy = -bspeed;
+              paddleX = (canvas.width - paddleWidth) / 2;
+            }
+          }
+        }
+
+        if (rightPressed && paddleX < canvas.width - paddleWidth) {
+          paddleX += 9;
+        }
+        else if (leftPressed && paddleX > 0) {
+          paddleX -= 9;
+        }
+        x += dx;
+        y += dy;
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }
+</script>
+
+</html>
