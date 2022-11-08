@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+
+   <input type="text" id="id" name="uid">
+   <input type="button" id="duplextChkid" value="검색">
+   <span id="idinfo"></span>
+
+   <script>
+      //      공통 응용 문제 ----------------------------------------------------------------------------------
+      // 4. 위 3번 문제에서 특수문자 1개 이상 문자 1개 이상을 체크한다... 
+      //    위 조건에 맞으면 사용가능 맞지 않으면 사용 불가능이라고 표시한다. <기본 for 사용 가능, 정규화 공부해서 사용가능
+      //    현업은 정규화를 사용>
+
+      document.getElementById('duplextChkid').onclick = () => {
+         var a = document.getElementById('id').value;
+         const regExp = /^(?=.*[a-zA-z])(?=.*[$`~!@$!%*#^.?&\\(\\)\-_=+]).{2,16}$/;
+         if (regExp.test(a)) {
+            document.getElementById('idinfo').innerHTML = '사용가능';
+         } else {
+            document.getElementById('idinfo').innerHTML = '사용불가능';
+         }
+      }
+   </script>
+</body>
+
+</html>

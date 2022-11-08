@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #aaa {
+    color: red;
+    background-color: olive;
+  }
+
+  #searchword_list {
+    width: 200px;
+    background-color: aquamarine;
+  }
+
+  .delform {
+    display: inline;
+  }
+</style>
+
+<body>
+  <h1> 검색어 관리하기 </h1>
+  <input type="text" id="searchword"><input type="button" id="searchword_btn" value="검색">
+  <hr>
+  현재검색어 <h3 id="h3"> </h3>
+  <div id="searchword_list">
+  </div>
+</body>
+<script>
+  var list = new Array();
+  var listdiv = document.getElementById("searchword_list");
+
+  document.getElementById("searchword_btn").onclick = () => {
+    let word = document.getElementById("searchword").value;
+    list.push(word);
+    showList();
+    h3.innerText = word + "<span>text</span>";
+  };
+
+  showList = () => {
+    listdiv.innerHTML = ''
+    for (let i = 0; i < list.length; i++) {
+      console.log(list[i])
+      var p_insert = document.createElement('p');
+      p_insert.innerHTML = list[i] + "<form class='delform'>" +
+        "<input type='hidden' value=" + (i + 1) + " id='no'>" +
+        "<input type='button' onclick='delList(no.value)' value='delete'>" +
+        " </form>";
+      listdiv.appendChild(p_insert);
+    }
+  }
+
+  function delList(index) {
+    alert(index);
+    list.splice(index - 1, 1);
+    showList();
+  }
+</script>
+
+</html>
+<!-- 심화문제 --------------------------------------------------------------------------------------------------------
+위 코드는 검색어를 입력하면 입력된 내용이 아래에 출력되는 문서이다.
+이 코드는 최근 검색어만 화면에 출력한다.
+검색어 옆에는 delete가 버튼이 있으며 이 버튼을 클릭하면 검색어가 입력된 순번이 알림창으로 나온다.
+* 위 소스의 자바스크립트 부분은 샘플입니다. 임의적으로 바꾸셔도 됩니다. 
+
+5. 
+배열을 활용하여 검색어를 배열에 저장되게 하시오. 
+createElement는 요소(태그)를 생성한다.
+appendChild는 현재 태그의 자식태그로 요소를 삽입할 수 있다.
+이 기능을 활용하여 입력된 검색어가 누적되어 나타나도록 수정하시오.
+이때, 기존 검색어 뒤에 검색어를 추가하는 방법과 배열을 순회하면서 모든 검색어를 새로
+출력하는 방법 2가지가 있다. 출력전용 메서드를 만들어서 2번째 방법으로 구현하세요.
+
+6. 
+5번 소스에서 다음 기능을 추가합니다.
+delete기능을 사용하여 해당 검색어가 화면에서 삭제 되도록 하세요. 

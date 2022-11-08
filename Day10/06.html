@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #aaa {
+    color: red;
+    background-color: olive;
+  }
+
+  #searchword_list {
+    width: 200px;
+    background-color: aquamarine;
+  }
+
+  .delform {
+    display: inline;
+  }
+</style>
+
+<body>
+  <h1> 검색어 관리하기 </h1>
+  <input type="text" id="searchword"><input type="button" id="searchword_btn" value="검색">
+  <hr>
+  현재검색어 <h3 id="h3"> </h3>
+  <div id="searchword_list">
+  </div>
+</body>
+<script>
+  var list = new Array();
+  var listdiv = document.getElementById("searchword_list");
+  let fragment = document.createDocumentFragment();
+  
+  document.getElementById("searchword_btn").onclick = () => {
+    let word = document.getElementById("searchword").value;
+    list.push(word);
+    showList();
+    h3.innerText = word + "<span>text</span>";
+  };
+
+  showList = () => {
+    listdiv.innerHTML = ''
+    for (let i = 0; i < list.length; i++) {
+      console.log(list[i])
+      var p_insert = document.createElement('p');
+      p_insert.innerHTML = list[i] + "<form class='delform'>" +
+        "<input type='hidden' value=" + (i+1) + " id='no'>" +
+        "<input type='button' onclick='delList(no.value)' value='delete'>" +
+        " </form>";
+        fragment.appendChild(p_insert);
+      }
+      listdiv.appendChild(fragment);
+  }
+
+  function delList(index) {
+    alert(index);
+    list.splice(index-1,1);
+    showList();
+  }
+</script>
+
+</html>
+<!-- 
+7. 5번에서 배열을 순회하면서 모든 검색어를 새로 출력하는 방법은 화면이 자주 바뀌어서 성능이 비효율적이다.
+document의 태그를 조작하는 것은 성능이 떨어질 수 있어서. 여러 태그를 반복으로 하지 않고 가짜 Document를
+하나 만들어서 한번에 태그를 조작하는 것이 성능에 이점이 있다.
+가짜 document를 만드는   createDocumentFragment();   메서드를 활용하여 이를 해결하시오. -->

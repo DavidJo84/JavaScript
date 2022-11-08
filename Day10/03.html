@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <h1 id="h1main">자바스크립트에서 제어하기 </h1>
+  <hr>
+  <ul>
+    <li class="li1"> 첫번재 </li>
+    <li class="li1"> 두번재 </li>
+    <li class="li1"> 세번재 </li>
+  </ul>
+  <div>
+    <ul>
+      <li> 첫번재 -나</li> 
+      <li> 두번재 -나</li> 
+      <li> 세번재 -나</li> 
+    </ul>
+  </div>
+  - 가 -
+  <input type="button" id="gBtn" value="green">
+  <input type="button" id="rBtn" value="red">
+
+
+
+
+  <script>
+    //   오늘 과제 복습 ----------------------------------------------
+    // 0. 위 소스에서 가부분에 버튼을 2개 만든다.
+    // 1개의 버튼의 value="green"  다른 한개는 value="red" 
+    // 해당 되는 버튼을 누르면 나 부분이 버튼의  값으로 설정된 값의 색상으로 변경된다. 
+    document.getElementById('gBtn').onclick = () => {
+      document.querySelector('div ul').style.color = 'green'
+    }
+    document.getElementById('rBtn').onclick = () => {
+      document.querySelector('div ul').style.color = 'red'
+    }
+  </script>
+
+</body>
+
+</html>

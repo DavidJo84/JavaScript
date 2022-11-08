@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+
+   아이디<input type="text" id="id" name="uid">
+   <input type="button" id="duplextChkid" value="검색">
+   <span id="idinfo"></span>
+
+   <script>
+      //      공통 응용 문제 ----------------------------------------------------------------------------------
+
+      // 3. 텍스트에 글자를 입력하고 버튼을 누른다. 버튼은 텍스트가 입력이 되어 있지 않다면 입력하시오라고 알림창을 뜨운다.
+      //    입력이 되어 있다면 사용가능이라고 표시한다.
+      // 파일명 : t03.html
+      document.getElementById('duplextChkid').onclick = () => {
+         var a = document.getElementById('id').value;
+         if (a == '') {
+            alert('아이디를 입력하세요')
+         } else {
+            document.getElementById('idinfo').innerHTML = '사용가능';
+         }
+      }
+   </script>
+</body>
+
+</html>
