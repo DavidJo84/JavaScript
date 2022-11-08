@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <h1>DOM</h1>
+  <h1 id="h1main">자바스크립트에서 제어하기</h1>
+  검색<input type="text" id="ser"><input type ="button" id="btn" value="검색">
+  <hr>
+  <ul class="ul01">
+    <li>첫번째</li>
+    <li>두번째</li>
+    <li>세번째</li>
+  </ul>
+  <div>
+    <h1>스케쥴</h1>
+    <ul>
+      <li>첫번째</li>
+      <li>두번째</li>
+      <li>세번째</li>
+    </ul>
+  </div>
+</body>
+<script>
+  document.getElementById('btn').onclick = () =>{
+    var a = document.getElementById('ser').value;
+    var b =  document.querySelector('#h1main');
+    if(a == ''){
+      alert('입력하세요')
+    }else{
+      b.innerHTML = a;
+    }
+  }
+  //'자바스크립트에서 제어하기'라는 텍스트를 '오늘 날씨 좋음' 으로 변경
+  //1. document.getElementById //html 문서에 id로 지정된 요소의 객체를 반환(유니크)
+  // document.getElementById('h1main').innerHTML = '오늘 날씨 좋음'
+  // var a = 'OK<br>'+ document.getElementById('h1main').innerHTML;
+  // document.getElementById('h1main').innerHTML = a;
+
+  //2. document.getElementsByClassName //html 문서에 class로 지정된 복수 요소의 객체를 반환(배열로 저장)
+
+  //3. document.getElementsByTagName //html 문서에 태그로 지정된 복수 요소의 객체를 반환(배열로 저장)
+  // var a= document.getElementsByTagName('h1')
+  // a[1].innerText = '오늘 날씨 좋음' //텍스트를 변경
+  // a[0].innerHTML = '<span>오늘날씨</span>' //태그를 삽입
+
+  //첫번째 리스트의 글자색을 파란색으로 변경
+  //4. document.querySelector //css에서 사용하는 선택자를 통해 요소를 가져옴(유니크)
+  // var b = document.querySelector('ul');
+  // b.style.color = 'blue'
+
+
+  //첫번째 리스트의 글자색을 파란색으로 변경
+  //5. document.querySelectorAll //css에서 사용하는 선택자를 통해 요소를 가져옴(배열로 저장)
+  // var b = document.querySelectorAll('.ul01');
+  // for(let i = 0 ; i < b.length; i++){
+  //   b[i].style.color = 'blue'
+  // }
+
+  // 요소를 가져와서
+  // 1. 스타일을 변경
+  // 2. 문서를 분석
+  // 3. 문서의 텍스트를 변경
+  // 4. 요소를 추가, 삭제
+  // 5. 이벤트를 처리
+
+  //DOM 요소와 node를 탐색
+  //1. childNodes : 특정태그에 포함된 자식 노드를 반환
+  //2. parentNode : 특정태그에 포함된 부모 노드를 반환
+  //3. nextSibling : 특정태그에 포함된 이후 형제 노드를 반환
+  //4. nextElementSibling : 특정태그에 포함된 이후 태그를 반환
+  //5. previousSibling : 특정태그에 포함된 이전 형제노드를 반환
+  //6. previousElementSibling : 특정태그에 포함된 이후 태그를 반환
+</script>
+
+</html>
