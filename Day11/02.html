@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .delform {
+      display: inline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <input type="text" id="id" name="uid">
+  <input type="button" id="duplextChkid" value="검색">
+  <input type="button" id="idsave" value="입력"><br>
+  <span id="idinfo"></span>
+
+  <script>
+    //      추가문제 ----------------------------------------------------------------------------------
+    // 8. 단어를 입력받는 요소, 검색버튼, 입력버튼이 있다.
+    //    입력버튼을 누르면 배열에 저장, 검색버튼을 누르면 배열에서 찾아서
+    //    html문서 아래에 출력, 검색어가 없으면 찾을 수 없음이라고 출력
+    var list = new Array();
+
+    document.getElementById('idsave').onclick = () => {
+      var a = document.getElementById('id').value;
+      var flag = true;
+      const regExp = /^(?=.*[a-zA-z])(?=.*[$`~!@$!%*#^.?&\\(\\)\-_=+]).{2,16}$/;
+      if (regExp.test(a)) {
+        if (list.length == 0) {
+          document.getElementById('idinfo').innerHTML = a + '사용가능/저장완료';
+          list.push(a);
+        } else {
+          for (let i = 0; i < list.length; i++) {
+            if (list[i] == a) {
+              document.getElementById('idinfo').innerHTML = a + '는 중복된 아이디입니다.';
+              flag = false;
+            }
+          }
+          if (flag) {
+            document.getElementById('idinfo').innerHTML = a + '사용가능/저장완료';
+            list.push(a);
+          }
+        }
+      } else {
+        document.getElementById('idinfo').innerHTML = '사용불가능';
+      }
+    }
+
+    document.getElementById('duplextChkid').onclick = () => {
+      var a = document.getElementById('id').value;
+      for (let i = 0; i < list.length; i++) {
+        if (a.indexOf(list[i]) != -1) {
+          document.getElementById('idinfo').innerHTML = list[i] + "<form class='delform'>" +
+            "<input type='hidden' value=" + (i + 1) + " id='no'>" +
+            "<input type='button' onclick='delList(no.value)' value='delete'>" +
+            " </form>";
+          break;
+        } else {
+          document.getElementById('idinfo').innerHTML = a + '(을/를) 찾을 수 없습니다.';
+        }
+      }
+    }
+
+    function delList(index) {
+      alert(list[index - 1] + '(을/를) 삭제하였습니다.');
+      list.splice(index - 1, 1);
+      idinfo.innerHTML = ''
+    }
+  </script>
+</body>
+
+</html>

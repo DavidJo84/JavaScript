@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+  아이디<input type="text" id="id" name="uid">
+  <input type="button" id="duplextChkid" value="검색"><br>
+  입력하신 아이디는 <span id="idinfo"></span> 입니다.
+
+  <script>
+    //      공통 응용 문제 ----------------------------------------------------------------------------------
+    // 1. 
+    //  입력하는 단어 위에서 지정한  span 태그에 출력하기..  입력될때 마다 갱신되어 출력된다.
+    // 파일명 : t01.html
+    $('#duplextChkid').click(() => {
+      var a = $('#id').val();
+      $('#idinfo').html(a);
+    })
+
+  </script>
+</body>
+
+</html>
