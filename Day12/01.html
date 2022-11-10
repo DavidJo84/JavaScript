@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table {
+      text-align: center;
+      width: 500px;
+      height: 400px;
+
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <table id="tbl" border="1">
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+    </tr>
+  </table>
+  <input type="button" id="random" onclick = 'random()' value="조추첨">
+
+</body>
+<script>
+  const table = document.getElementById('tbl');
+
+  var list = ['조하영', '김은혜', '정원무', '조현우', '권준석', '김다솜', '홍나영', '박지담', '김진호', '김하영','홍가현','최예슬','정상현','배대호','김하얀','배승규','문상연','권병국','박영신','김성빈','정찬호','홍은지','이단비','위성권'];
+
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  
+random = () =>{
+  shuffle(list);
+  var cnt = 0;
+  for(let i = 0 ; i<6; i++){
+    for(let j = 0 ; j<4 ; j++){
+      table.rows[i].cells[j].innerText = list[cnt]; 
+      cnt++;
+    }
+  }
+}
+
+</script>
+
+</html>
