@@ -189,11 +189,14 @@
       <form>
         <thead>
           <tr>
-            <td><input type="checkbox"></td>
+            <td><input type="checkbox" id="allChk" onchange="allChk1()"></td>
             <td>상품정보</td>
             <td>옵션</td>
             <td>상품금액</td>
             <td>배송비</td>
+          </tr>
+          <tr id="hidden">
+            <td colspan="5"> 장바구니가 비어있습니다. 물건을 주문해주세요.</td>
           </tr>
         </thead>
         <tbody id="cart__list">
@@ -228,9 +231,9 @@
                 onclick="delRow()" value="선택상품삭제">
               <button class="cart__list__optionbtn">선택상품 찜</button>
             </td>
-            <td>총합</td>
-            <td> 상품비 :<span id="allGoods"></span> + 배송비 : <span id="allDlv"></span></td>
-            <td>= <span id="allPri"></span></td>
+            <td></td>
+            <td style="text-align: center;"> 선택상품금액   <span id="allGoods"></span> + 총 배송비   <span id="allDlv"></span></td>
+            <td style="text-align: center; color: limegreen; border-left: 1px lightgray solid;"> 주문금액 <span id="allPri"></span></td>
           </tr>
         </tfoot>
       </form>
@@ -246,10 +249,10 @@
             <td>상품금액</td>
             <td>배송비</td>
           </tr>
+          
         </thead>
         <tbody>
           <tr class="cart__list__detail">
-
             <td style="width: 40%;"><input type="text" id="goodsInfo" size="40"></td>
             <td class="cart__list__option" style="width: 27%;">
               상품 주문 수량<input type="number" id="goodsCnt" min="1" value="1" style="width: 40px;">개
@@ -258,9 +261,7 @@
             </td>
             <td style="width: 15%;"><input type="text" id="goodsDlv" size="10"></td>
           </tr>
-
         </tbody>
-
       </form>
     </table>
     <div class="cart__mainbtns">
@@ -271,23 +272,23 @@
 </body>
 
 <script>
-  
+
   addRow = () => {
+    document.getElementById('hidden').style.display = 'none';
     const table = document.getElementById('cart__list');
-
     const newRow = table.insertRow(0);
-
     const newCell0 = newRow.insertCell(0);
     const newCell1 = newRow.insertCell(1);
     const newCell2 = newRow.insertCell(2);
     const newCell3 = newRow.insertCell(3);
     const newCell4 = newRow.insertCell(4);
 
-    newCell0.innerHTML = "<input type='checkbox'>"
+    newCell0.innerHTML = "<input type='checkbox' onchange = 'showPri()' checked>"
     newCell1.innerText = document.getElementById("goodsInfo").value;
     newCell2.innerHTML = '상품 주문 수량' + '<input type="number" id = "cnt" min="1" value=' + document.getElementById("goodsCnt").value + ' style="width: 40px;">개'
-    newCell3.innerText = document.getElementById("goodsPrice").value*document.getElementById("goodsCnt").value;
+    newCell3.innerText = document.getElementById("goodsPrice").value * document.getElementById("goodsCnt").value;
     newCell4.innerText = document.getElementById("goodsDlv").value;
+    document.getElementById('allChk').checked = true;
     showPri();
   }
 
@@ -295,36 +296,58 @@
     const table = document.getElementById('cart__list');
     for (let i = 0; i < table.rows.length; i++) {
       var chkBox = table.rows[i].cells[0].childNodes[0].checked;
-      console.log(chkBox);
-      console.log(i);
-
       if (chkBox) {
         table.deleteRow(i);
         i--;
       }
     }
+    if(table.rows.length == 0){
+      document.getElementById('hidden').style.display = '';
+    }
     showPri();
   }
-  
+
   showPri = () => {
     const table = document.getElementById('cart__list');
     var allGoods = 0;
     var allDlv = 0;
-    for(let i =0; i<table.rows.length; i++){
-      var goodsPri = table.rows[i].cells[3].innerText;
+    for (let i = 0; i < table.rows.length; i++) {
+      var chkBox = table.rows[i].cells[0].childNodes[0].checked;
+      if(chkBox){
+        var goodsPri = table.rows[i].cells[3].innerText;
       // var goodsCnt = document.getElementById('cnt').value;
       // console.log(goodsCnt);
-      allGoods += parseInt(goodsPri,10)
+      allGoods += parseInt(goodsPri, 10)
       // *parseInt(goodsCnt,10)
+      }
     }
-    for(let i =0; i<table.rows.length; i++){
+
+    for (let i = 0; i < table.rows.length; i++) {
+      var chkBox = table.rows[i].cells[0].childNodes[0].checked;
       var dlvPri = table.rows[i].cells[4].innerText;
-      allDlv += parseInt(dlvPri,10);
+      if(chkBox){
+        if(dlvPri == '무료'){
+          dlvPri = 0;
+        }
+        allDlv += parseInt(dlvPri, 10);
+      }
     }
-    
+
     document.getElementById('allGoods').innerText = allGoods;
     document.getElementById('allDlv').innerText = allDlv;
-    document.getElementById('allPri').innerText = allGoods+allDlv;
+    document.getElementById('allPri').innerText = allGoods + allDlv;
+  }
+
+  allChk1 = () => {
+    const table = document.getElementById('cart__list');
+    for (let i = 0; i < table.rows.length; i++) {
+      if(document.getElementById('allChk').checked){
+        table.rows[i].cells[0].childNodes[0].checked = true;
+      }else{
+        table.rows[i].cells[0].childNodes[0].checked = false;
+      }
+    }
+    showPri();
   }
 </script>
 

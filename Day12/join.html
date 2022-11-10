@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/all.css">
+  <title>온누리한방병원</title>
+  <style>
+    #join {
+      padding-left: 12px;
+      border-radius: 10px;
+      margin: 0 auto;
+      width: 330px;
+      height: 420px;
+      background-color: rgba(255, 255, 255, 0.7);
+      box-sizing: border-box;
+      color: rgb(68, 68, 68);
+    }
+
+    #join table {
+
+      color: rgb(68, 68, 68);
+    }
+
+    #join td {
+      height: 41px;
+
+    }
+
+    #idchk, #telchk{
+      padding-left: 30px;
+      
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div id="logo">
+        <h1><span style="color: #702378; font-size: 38px;">온누리병원</span> 관리시스템</h1>
+      </div>
+      <form action="search" method="get">
+        <div id="search">
+          <input type="text" name="inputSch">
+          <input class="btn" type="submit" value="검색">
+        </div>
+      </form>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">환자현황</a></li>
+        <li><a href="#">오늘의 식단</a></li>
+        <li><a href="#">자유게시판</a></li>
+      </ul>
+    </nav>
+    <section>
+      <div id="join">
+        <form action="loginPass" method="post">
+          <table style="width: 310px;">
+            <tr>
+              <td style="text-align: center; "><b>회원가입</b></td>
+            </tr>
+            <tr>
+              <td>아이디<span id="idchk" style="padding-left: 30px; "></span></td>
+            </tr>
+            <tr>
+              <td style="display: inline;">
+                <input type="text" id="idchkInput" name="joinid" style="width: 230px; height: 40px">
+                <input class="btn" id="idchkBtn" type="button" value="ID체크">
+              </td>
+
+            </tr>
+
+            <tr>
+              <td>성 명</td>
+            </tr>
+            <tr>
+              <td><input type="text" name="name" style="width: 290px; height: 40px"></td>
+            </tr>
+
+            <tr>
+              <td>전화번호<span id="telchk"></span></td>
+            </tr>
+            <tr>
+              <td>
+                <input type="tel" id="telchkInput" name="tel" style="width: 290px; height: 40px">
+              </td>
+            </tr>
+
+            <tr>
+              <td style="text-align: center; padding-top: 35px;">
+                <input class="btn" type="submit" value="회원가입" style="width: 100%; height: 100%;">
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </section>
+    <footer>
+      대표전화 : 032-OOO-OOOO
+      팩스 : 032-OOO-OOOO
+      주소 : 인천광역시 부평구 OOO OOO (부평동)
+      사업자번호 : OOO-OO-OOOOO 대표 : OOO<br>
+      COPYRIGHT(c) 2022 - CNR KOREAN MEDICINE HOSPITAL - ALL RIGHTS RESERVED. HOSTING BY INTERC
+    </footer>
+  </div>
+</body>
+<script>
+  document.getElementById('idchkBtn').onclick = () => {
+    var a = document.getElementById('idchkInput').value;
+    const regExp = /^(?=.*[0-9]).{8,10}$/;
+    if (regExp.test(a)) {
+      document.getElementById('idchk').innerHTML = '*사용가능한 id 입니다.';
+      document.getElementById('idchk').style.color = 'green';
+      document.getElementById('idchk').style.fontSize = '10px';
+    } else {
+      document.getElementById('idchk').innerHTML = '*숫자 포함, 8~10글자 사이로 입력해주세요';
+      document.getElementById('idchk').style.color = 'red';
+      document.getElementById('idchk').style.fontSize = '10px';
+    }
+  }
+
+  document.getElementById('telchkInput').onchange = () => {
+    var a = document.getElementById('telchkInput').value;
+    const regExp = /^010-\d{4}-\d{4}$/;
+    if (regExp.test(a)) {
+      document.getElementById('telchk').innerHTML = '*올바른 형식의 번호 입니다.';
+      document.getElementById('telchk').style.color = 'green';
+      document.getElementById('telchk').style.fontSize = '10px';
+    } else {
+      document.getElementById('telchk').innerHTML = '*010-0000-0000 형식으로 입력하세요.';
+      document.getElementById('telchk').style.color = 'red';
+      document.getElementById('telchk').style.fontSize = '10px';
+    }
+  }
+  
+</script>
+
+</html>
